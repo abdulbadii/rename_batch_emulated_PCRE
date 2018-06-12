@@ -1,6 +1,10 @@
 # PCRE2-controlled rename operation in bulky / globalizing  
 
-usage  
+requirements: Bash, find, sed, pcre2grep, mv. Get PCRE2 for grep at:
+
+https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
+
+Usage  
 ren SOURCE DEST  
 usual/literal rename operation
 
