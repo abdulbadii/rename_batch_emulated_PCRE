@@ -1,7 +1,6 @@
 # PCRE2-controlled, in bulky rename operation ie. globaling batch process  
 
-requirements:  
-Bash, find, sed, mv and pcre2grep, but I renamed pcre2grep to 'gre', get it from:
+Requirements: Bash, find, sed, mv and pcre2grep which I renamed it to 'gre'. Get it from:
 
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 
@@ -37,4 +36,4 @@ woodxxx2
 winexxx1
 
 DISCLAIMER:  
-It's been very scarcely tested and just provided "as is". Do on your own risk, you'd better back up the data first. Does not guarantee any success, no warranty for data loss and damage.
+It's been very scarcely tested and just provided "as is". Do on your own risk, you'd better back up the data first. Does not guarantee any success and no warranty for data loss and damage.
