@@ -19,7 +19,7 @@ else
 fi
 # The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n while Linux-port on Mac use \r, instead of \n
 IFS=$'\r\n'
-for l in `find $d -noleaf -regextype posix-extended -iregex ".*?$x.*" | gre -oie "\\$a"`
+for l in `find $d -noleaf -regextype posix-extended -iregex ".*?$x" | gre -oie "${a/'/'/'\/'}"`
 {
 mv -vbS _old $l `echo $l | sed -r "s~$x~$b~i"`
 }
