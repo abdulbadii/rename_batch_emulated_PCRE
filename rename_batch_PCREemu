@@ -1,0 +1,24 @@
+ren() {
+if [[ $* =~ ^: ]]
+then
+s=$*;s=${s:1}
+[[ $s =~ ' :' ]] ||{ echo Put the other ':' as marker for regex replacement pattern;return; }
+a=${s% :*};a=${a%% }
+b=${s#* :}
+# converting PCRE to GNU-extended regex
+x=^`echo $a |sed -r 's/\[.*?\\\[^]]+\]/./g; s/\\\d/[0-9]/g'`$
+echo $x
+# return
+t=`echo $x | sed -r 's/([^\\+*.([]+).*/\1/'`
+if [[ $a =~ ^/ ]] ;then d=${t%/*}
+else d=$PWD
+fi
+# The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n instead. Linux-port on Mac (if any) use \r instead
+IFS=$'\n'
+for l in `find $d -noleaf -regextype posix-extended -iregex ".*${x#$d}.*" | gre -oie "${a////\\/}"`
+{
+mv -vbS _old $l `echo $l | sed -r "s~$x~$b~i"`
+}
+
+else mv -vbS _old $*
+fi;}
