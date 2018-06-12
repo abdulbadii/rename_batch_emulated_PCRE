@@ -1,4 +1,4 @@
-# PCRE2-controlled rename operation in bulky / globalizing  
+# PCRE2-controlled, in bulky rename operation ie. globaling batch process  
 
 requirements:  
 Bash, find, sed, mv and pcre2grep, but I renamed pcre2grep to 'gre', get it from:
@@ -16,7 +16,7 @@ ren ':SOURCE  :DEST'
 rename PCRE regex pattern SOURCE to become DEST by backreferring any captured group in SOURCE having some Bash special character  
 
 be sure to read comments within codes, such as
-# The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n while Linux-port on Mac use \r, instead of \n
+## The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n while Linux-port on Mac use \r, instead of \n
 
 E.g. Let  
 /c/usr/bin/hello folder containing files:  
