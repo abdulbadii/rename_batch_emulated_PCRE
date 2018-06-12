@@ -14,8 +14,8 @@ rename PCRE regex pattern SOURCE to become DEST by backreferring any captured gr
 ren ':SOURCE  :DEST'  
 rename PCRE regex pattern SOURCE to become DEST by backreferring any captured group in SOURCE having some Bash special character  
 
-let
-/c/usr/bin/hello folder containig files:  
+E.g. Let  
+/c/usr/bin/hello folder containing files:  
 world001  
 world002  
 world003  
@@ -24,7 +24,7 @@ wood002
 wine01
 
 ren ':(/c/.*?hel.*?w\w+?)\d+(\d) :\1xxx\2'  
-it'll be containig files:
+it'll be containing files:
 worldxxx1  
 worldxxx2  
 worldxxx3  
