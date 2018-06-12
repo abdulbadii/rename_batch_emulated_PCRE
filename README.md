@@ -37,4 +37,4 @@ woodxxx2
 winexxx1
 
 DISCLAIMER:  
-Very scarcely tested. It just provide "as is". Do on your own risk, back up the data first. Does not guarante anything that will lead to impairment and damage.
+It's been very scarcely tested and just provided "as is". Do on your own risk, you'd better back up the data first. Does not guarantee any success, no warranty for data loss and damage.
