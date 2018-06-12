@@ -7,7 +7,7 @@ a=${s% :*};a=${a%% }
 b=${s#* :}
 # emulating and converting PCRE to GNU-extended regex
 x=^`echo $a |sed -r 's/\[.*?\\\[^]]+\]/./g; s/\\\d/[0-9]/g'`$
-echo $x
+echo The GNU-extended regex conversion is  $x
 # return
 t=`echo $x | sed -r 's/([^\\+*.([]+).*/\1/'`
 if [[ $a =~ ^/ ]] ;then d=${t%/*}
