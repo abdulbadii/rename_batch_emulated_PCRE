@@ -15,6 +15,9 @@ rename PCRE regex pattern SOURCE to become DEST by backreferring any captured gr
 ren ':SOURCE  :DEST'  
 rename PCRE regex pattern SOURCE to become DEST by backreferring any captured group in SOURCE having some Bash special character  
 
+be sure to read comments within codes, such as
+# The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n while Linux-port on Mac use \r, instead of \n
+
 E.g. Let  
 /c/usr/bin/hello folder containing files:  
 world001  
@@ -34,4 +37,4 @@ woodxxx2
 winexxx1
 
 DISCLAIMER:  
-Very scarcely tested. It just provide "as is". Does not guarante anything that will lead to impairment and damage.
+Very scarcely tested. It just provide "as is". Do on your own risk, back up the data first. Does not guarante anything that will lead to impairment and damage.
