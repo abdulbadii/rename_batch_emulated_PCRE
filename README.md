@@ -1,6 +1,7 @@
 # PCRE2-controlled rename operation in bulky / globalizing  
 
-requirements: Bash, find, sed, pcre2grep, mv. Get PCRE2 for grep at:
+requirements:  
+Bash, find, sed, mv and pcre2grep, but I renamed pcre2grep to 'gre', get it from:
 
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 
@@ -33,4 +34,4 @@ woodxxx2
 winexxx1
 
 DISCLAIMER:  
-Very scarcely tested. It just provide "as is". Do not guarante anything that can make failures and defections.
+Very scarcely tested. It just provide "as is". Does not guarante anything that will lead to impairment and damage.
