@@ -9,21 +9,25 @@ b=${s#* :}
 # converting PCRE to GNU-extended regex
 x=`echo $a |sed -r 's/\[.*?\\\[wds][^]]*\]/./ig; s/\\\d/[0-9]/g'`
 echo GNU-ext regex:  $x
+# The RHS below if Linux-port on Windows (Msys2) use \r\n, while Linux-port on Mac use \r instead of \n
+IFS=$'\r\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
 	# s is the first longest literal
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/'`
 	d=${s%/*}
 	d=${d//'('/};d=${d//')'/}
+	for l in `find $d -noleaf -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
+	{
+	mv -vbS _old $l `echo $l | sed -r "s~$x~$b~i"`
+	}
 else
-	d=~+
+	for l in `find ~+ -noleaf -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "${a/'/'/'\/'}"`
+	{
+	mv -vbS _old $l `echo $l | sed -r "s~$x~$b~i"`
+	}
 fi
-# The RHS below if Linux-port on Windows (Msys2) use \r\n, while Linux-port on Mac use \r instead of \n
-IFS=$'\n'
-for l in `find $d -noleaf -regextype posix-extended -iregex ".*?$x" | gre -ie "${a/'/'/'\/'}"`
-{
-mv -vbS _old $l `echo $l | sed -r "s~$x~$b~i"`
-}
-elif test $1 ;then mv -vbS _old $*
+elif test $1
+then	mv -vbS _old $*
 fi
 }
