@@ -5,18 +5,17 @@ Requirements: Bash, find, sed, mv and pcre2grep which I renamed it to 'gre'. Get
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 
 Usage  
-ren SOURCE DEST  
+ren [mv option] SOURCE DEST  
 usual/literal rename operation by mv command
 
-ren :SOURCE  :DEST  
+ren [mv option] ':SOURCE  :DEST'  
+rename PCRE regex pattern SOURCE to become DEST which may backrefer any captured group in SOURCE  
+Note the double colon (:) starting the source/destination field and note the enclosure by pair of quotes; ' or " 
 
-rename PCRE regex pattern SOURCE to become DEST by backreferring any captured group in SOURCE having no Bash special character
-Note the double colon ':' starting either field of the source/destination  
+mv option if any must be a field/string of single or multi option put sequentially, must not have space
+i.e, -bu Backup and Update 
 
-ren ':SOURCE  :DEST'  
-rename PCRE regex pattern SOURCE to become DEST by backreferring any captured group in SOURCE having some Bash special character  
-
-be sure to read useful comments within codes, such  
+it's good to read the useful comments within codes, such  
   The RHS of Bash value below on Linux-port Windows (Msys2), use \r\n while Linux-port on Mac use \r, instead of \n
 
 E.g. Let  
