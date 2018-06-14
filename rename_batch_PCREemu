@@ -9,10 +9,10 @@ s=${s:1}
 a=${s% :*};a=${a%% }
 b=${s#* :}
 # converting PCRE to GNU-extended regex
-x=`echo $a |sed -r 's/\[\^?..+?-[^]]*\]/./g; s/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
+x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
 echo GNU-ext regex:  $x
 # The RHS below after '$' char if Linux: \n, if ported on Windows (Msys2): \r\n if ported on Mac:  \r
-IFS=$'\r\n'
+IFS=$'\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
 	# s is the first longest literal
