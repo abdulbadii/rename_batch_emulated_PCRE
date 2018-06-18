@@ -1,8 +1,11 @@
-# PCRE2-controlled rename operation, in bulk/globaling batch process  
+# PCRE2-controlled rename or copy operation in bulk/globaling process  
 
-Requirements: Bash, find, sed, mv and pcre2grep which I renamed it to 'gre'. Get it from:
-
+Requirements: Bash, find, sed, pcre2grep which I renamed it to 'gre', and mv or cp, to rename use mv, to copy use cp  
+Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
+and rename it gre for brevity  
+
+The script file here is for renaming process. For copying, duplicate the 'ren' function and change 'ren' to word you like, say 'copy' and replace 'mv' in line 22 and 27 with 'cp' then use as below with 'copy' instead or 'ren'  
 
 Usage  
 ren [mv option] SOURCE DEST  
@@ -44,4 +47,4 @@ ren ':(.*?w\w+?d)\d+(\d) :\1xxx\2'
 But the latter will also rename /c/usr/bin/hello/world/world001 to /c/usr/bin/hello/world/worldxxx1  if any such exist    
 
 DISCLAIMER:  
-It's been very scarcely tested and just provided "as is". Do on your own risk, you'd better back up the data first. Does not guarantee any success and no warranty for data loss and damage.
+It's been tested sucessfully but not exhaustively. It's just provided "as is". Do on your own risk, you'd better back up the data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
