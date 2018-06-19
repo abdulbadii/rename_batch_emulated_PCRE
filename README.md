@@ -2,7 +2,7 @@
 
 Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp. Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
-compile and install to the OS, and rename it gre for brevity  
+compile and install to the OS, and rename it to 'gre' for brevity  
 
 The script here is for renaming process. For copying one, duplicate the 'ren' function and change 'ren' to word you like, say 'copy' and replace 'mv' in line 22 and 27 with 'cp', use it as 'copy' instead of 'ren' below  
 
