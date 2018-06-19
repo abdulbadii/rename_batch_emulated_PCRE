@@ -1,13 +1,14 @@
 # PCRE2-controlled rename or copy operation in bulk/globaling process  
 
-Requirements: Bash, find, sed, pcre2grep which I renamed it to 'gre', and mv or cp, to rename use mv, to copy use cp  
-Get pcre2grep from:  
+Requirements: Bash, find, sed, pcre2grep or grep, and mv or cp, to rename use mv, to copy use cp. Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
-and rename it gre for brevity  
+compile and install to the OS, and rename it gre for brevity  
 
-The script file here is for renaming process. For copying, duplicate the 'ren' function and change 'ren' to word you like, say 'copy' and replace 'mv' in line 22 and 27 with 'cp' then use as below with 'copy' instead or 'ren'  
+If using grep change the code line 20 and 25 that contains 'gre' to grep
 
-Usage  
+The script here is for renaming process. For copying one, duplicate the 'ren' function and change 'ren' to word you like, say 'copy' and replace 'mv' in line 22 and 27 with 'cp' then use it as 'copy' instead of 'ren' below  
+
+# Usage  
 ren [mv option] SOURCE DEST  
 usual/literal rename operation by mv command
 
@@ -16,8 +17,8 @@ rename PCRE regex pattern SOURCE to become DEST which may backrefer to any captu
 Note the double colon (:) starting the source/destination field and note the enclosure by pair of either quotes ' or " 
 
 The mv option if any is a spaceless field/string of single or multi option put sequentially
-e.g, -bu  Backup with add '_old' suffix if the new designated name exists  
-  -fu such case above but Force to overwrite it only if SOURCE is newer than that, i.e: Update  
+e.g, -bu  Backup with add '_old' suffix if the target name exists  
+  -fu such case above but Force to overwrite it only if SOURCE is newer than it i.e. it will Update  
 type mv --help  
 
 The searching ignores (is insensitive to) letter case. It'd accept either absolute or relative path argument which pattern will be matched. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere under the current directory prefix it with regex .*?. 
