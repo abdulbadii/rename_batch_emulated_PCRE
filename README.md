@@ -4,7 +4,7 @@ Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to cop
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 compile and install to the OS, and rename it to 'gre' for brevity  
 
-The script here is for renaming process. For copying one, duplicate the 'ren' function and change 'ren' to word you like, say 'copy' and replace 'mv' in line 22 and 27 with 'cp', use it as 'copy' instead of 'ren' below  
+The script here is for renaming process. For copying one, duplicate the function namedly 'ren' and change it to word you like say 'copy', use 'copy' instead of 'ren' shown below. And replace 'mv' in line 22 and 27 with 'cp'   
 
 # Usage  
 ren [mv option] SOURCE DEST  
@@ -19,7 +19,7 @@ e.g, -bu  Backup with add '_old' suffix if the target name exists
   -fu such case above but Force to overwrite it only if SOURCE is newer than it i.e. it will Update  
 type mv --help  
 
-The searching ignores (is insensitive to) letter case. It'd accept either absolute or relative path argument which pattern will be matched. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere under the current directory prefix it with regex .*?. 
+The searching is insensitive to (ignoring) letter case. It'd accept either absolute or relative path argument which pattern will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere under the current directory prefix it with regex .*?. 
 Read the comments within codes.  
 
 E.g. Let  
