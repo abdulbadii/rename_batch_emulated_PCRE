@@ -2,7 +2,7 @@
 
 Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  As Windows-port for Linux you'd get MSYS2: https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
 As Mac-port for Linux get on Mac App Store: https://redirect.viglink.com/?format=go&jsonp=vglnk_152948260196320&key=f33f208bd7d94bed0a23fe052ea3ba17&libId=jimu85xi0100ohp6000DAbv4hoov2&loc=https%3A%2F%2Fwww.maketecheasier.com%2Finstall-linux-software-on-mac%2F&v=1&out=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835&ref=https%3A%2F%2Fwww.google.com%2F&title=How%20to%20Install%20Linux%20Software%20on%20a%20Mac%20with%20MacPorts%20-%20Make%20Tech%20Easier&txt=Mac%20App%20Store  
-or Apple’s developer website https://redirect.viglink.com/?format=go&jsonp=vglnk_152948262704721&key=f33f208bd7d94bed0a23fe052ea3ba17&libId=jimu85xi0100ohp6000DAbv4hoov2&loc=https%3A%2F%2Fwww.maketecheasier.com%2Finstall-linux-software-on-mac%2F&v=1&out=https%3A%2F%2Fdeveloper.apple.com%2Fdownload%2Fmore%2F&ref=https%3A%2F%2Fwww.google.com%2F&title=How%20to%20Install%20Linux%20Software%20on%20a%20Mac%20with%20MacPorts%20-%20Make%20Tech%20Easier&txt=Apple%E2%80%99s%20developer%20website  
+or Apple’s developer website
 
 Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
