@@ -1,7 +1,8 @@
 # PCRE2-controlled rename and copy operation in bulk and global using Bash script  
 
-Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  As Windows-port for Linux you'd get MSYS2: https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
-As Mac-port for Linux get on Apple’s developer website or Mac App Store: https://itunes.apple.com/id/app/xcode/id497799835?mt=12&ign-mpt=uo%3D4 
+Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  
+As Windows-port for Linux, get MSYS2: https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
+As Mac-port for Linux get on Apple’s developer website or Mac App Store: https://itunes.apple.com/id/app/xcode/id497799835?mt=12&ign-mpt=uo%3D4  
 Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 compile and install to the OS, and rename it to 'gre' for brevity  
