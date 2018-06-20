@@ -19,31 +19,31 @@ e.g, -bu  Backup with add '_old' suffix if the target name exists
   -fu such case above but Force to overwrite it only if SOURCE is newer than it i.e. it will Update  
 type mv --help  
 
-The searching is insensitive to (ignoring) letter case. It'd accept either absolute or relative path argument which pattern will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere under the current directory prefix it with regex .*?. 
-Read the comments within codes.  
-
-E.g. Let  
-/c/usr/bin/hello folder containing files:  
+The searching is insensitive to (ignoring) letter case. It'd accept either absolute or relative path argument which pattern will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere recursively under the current directory prefix it with regex .*?. It's good to read the comments within script.  
+E.g,
+Let /c/usr/bin/hello folder containing files:  
 world001  
 world002  
 wood001  
 wood002  
 wine00
 
-ren ':(/c/.*?hel.*?w\w+?d)\d+(\d) :\1xxx\2'  
-it'll be containing files:  
+ren ':(/c/us.*?hel.*?w\w+?d)\d+(\d) :\1xxx\2'  
+
+it'd be containing files:  
 worldxxx1  
 worldxxx2   
 woodxxx1  
 woodxxx2  
 wine00  
 
-In relative way: cd /c/usr/bin/hello  
+In relative way:  
+cd /c/usr/bin/hello  
 ren ':(w\w+?d)\d+(\d) :\1xxx\2'  
-or  
+  or  
 ren ':(.*?w\w+?d)\d+(\d) :\1xxx\2'  
 
-But the latter will also rename /c/usr/bin/hello/world/world001 to /c/usr/bin/hello/world/worldxxx1  if any such exist    
+But the latter will also search and rename /c/usr/bin/hello/world/world001 to /c/usr/bin/hello/world/worldxxx1  if such exists   
 
 DISCLAIMER:  
 It was sucessfully tested but not exhaustively. It's just provided "as is". Do on your own risk, you'd better back up the data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
