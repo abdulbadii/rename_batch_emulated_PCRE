@@ -1,6 +1,8 @@
 # PCRE2-controlled rename or copy operation in bulk/globaling process  
 
-Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp. Get pcre2grep from:  
+Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  For Windows get MSYS2 as Linux-port: https://sourceforge.net/projects/msys2/files/latest/download?source=directory
+
+Get pcre2grep from:  
 https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
 compile and install to the OS, and rename it to 'gre' for brevity  
 
@@ -28,7 +30,7 @@ wood001
 wood002  
 wine00
 
-ren ':(/c/us.*?hel.*?w\w+?d)\d+(\d) :\1xxx\2'  
+ren ':(/c/u.*?hel.*?w\w+?d)\d+(\d) :\1xxx\2'  
 
 it'd be containing files:  
 worldxxx1  
@@ -46,4 +48,4 @@ ren ':(.*?w\w+?d)\d+(\d) :\1xxx\2'
 But the latter will also search and rename /c/usr/bin/hello/world/world001 to /c/usr/bin/hello/world/worldxxx1  if such exists   
 
 DISCLAIMER:  
-It was sucessfully tested but not exhaustively. It's just provided "as is". Do on your own risk, you'd better back up the data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
+It was sucessfully tested though not exhaustively. It's just provided "as is". Do on your own risk, you'd better back up the data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
