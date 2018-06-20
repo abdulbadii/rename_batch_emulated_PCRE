@@ -19,12 +19,12 @@ then
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
 	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
-	mv $o -vS _old $l `echo $l | sed -r "s~$x~$b~i"`
+	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 else
 	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
-	mv $o -vS _old $l `echo $l | sed -r "s~$x~$b~i"`
+	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 fi
 elif test $s ;then mv -vS _old $o $*
