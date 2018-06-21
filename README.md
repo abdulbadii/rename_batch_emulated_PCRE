@@ -1,11 +1,14 @@
-# PCRE2-controlled rename and copy operation in bulk and global using Bash script  
+# PCRE2-controlled rename and copy operation in bulk and global using Linux Bash script  
+Requirements:  
+Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  
+As Windows port get MSYS2: https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
+As Mac port get on https://www.macports.org or Apple’s developer website or Mac App Store: https://itunes.apple.com/id/app/xcode/id497799835?mt=12&ign-mpt=uo%3D4 or Homebrew https://brew.sh/  
 
-Requirements: Bash, find, sed, pcre2grep, and mv or cp, to rename use mv, to copy use cp.  
-As Windows-port for Linux, get MSYS2: https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
-As Mac-port for Linux get on Apple’s developer website or Mac App Store: https://itunes.apple.com/id/app/xcode/id497799835?mt=12&ign-mpt=uo%3D4  
-Get pcre2grep from:  
-https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c   
-compile and install to the OS, and rename it to 'gre' for brevity  
+To get pcre2grep try type: sudo apt-get pcre2grep
+For Windows port, on Msys2 terminal type
+pacman -S mingw-w64-x86_64-pcre2
+or get from many other sources such as: https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c compile and install  
+In any case rename it to 'gre' for brevity  
 
 The script here is for renaming process. For copying one, duplicate the function namedly 'ren' and change it to word you like say 'copy', use 'copy' instead of 'ren' shown below. And replace 'mv' in line 22 and 27 with 'cp'   
 
