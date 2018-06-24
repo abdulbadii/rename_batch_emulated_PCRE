@@ -21,12 +21,12 @@ ren [mv option] ':SOURCE  :DEST'
 rename PCRE regex pattern SOURCE to become DEST which may backrefer to any captured group in SOURCE  
 Note the double colon (:) starting the source and destination field and note the enclosure by quotes pair of ' or " 
 
-The mv option if any is a spaceless field/string of single or multi option put sequentially
-e.g, -b Backup if the target name exists, by adding '_old' suffix  
-  -fu if the target name exists, force to overwrite it only if SOURCE is newer than it, ie. will be Updating  
-
+The mv option if any is a spaceless field/string of single or multi option put sequentially e.g:  
+-b Backup if the target DEST name exists, by adding '_old' suffix  
+-fu if the DEST name exists, force to overwrite it only if SOURCE is newer than it so it will be Updating  
 type mv --help, for clear explanaition  
-The searching is insensitive to (ignoring) letter case. It'd accept either absolute or relative path argument which pattern will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere recursively under the current directory prefix it with regex .*?. It's good to read the comments within script.  
+
+The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere recursively under the current directory prefix it with regex .*?. It's good to read the comments within script.  
 E.g,
 Let /c/usr/bin/hello folder containing files:  
 world001  
