@@ -23,9 +23,9 @@ Note the double colon (:) starting the source and destination field and note the
 The mv option if any is a spaceless field/string of single or multi option put sequentially e.g:  
 -b Backup if the target DEST name exists, by adding '_old' suffix  
 -fu if the DEST name exists, force to overwrite it only if SOURCE is newer than it so it will be Updating  
-type mv --help, for clear explanaition  
+type mv --help, for clear explanation  
 
-The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. As for relative path argument it'll be concatenated directly thus it must be on current directory, if it's meant to be recursively anywhere under current directory, prefix it with regex .*?.  
+The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. As for relative path argument, it'll be concatenated directly thus it must be on current directory, if it's meant to be recursively anywhere under current directory, prefix it with regex .*?  
 It's good to read the comments within script.  
 E.g,
 Let /c/usr/bin/hello folder containing files:  
