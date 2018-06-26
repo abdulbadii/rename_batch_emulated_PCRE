@@ -25,7 +25,8 @@ The mv option if any is a spaceless field/string of single or multi option put s
 -fu if the DEST name exists, force to overwrite it only if SOURCE is newer than it so it will be Updating  
 type mv --help, for clear explanaition  
 
-The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. If it's relative that argument will be concatenated directly so it means it's on the current directory only, if it's meant to be anywhere recursively under the current directory prefix it with regex .*?. It's good to read the comments within script.  
+The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. As for relative path argument it'll be concatenated directly thus it must be on current directory, if it's meant to be recursively anywhere under current directory, prefix it with regex .*?.  
+It's good to read the comments within script.  
 E.g,
 Let /c/usr/bin/hello folder containing files:  
 world001  
