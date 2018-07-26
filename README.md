@@ -28,7 +28,7 @@ type mv --help, for clear explanation
 The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. As for relative path argument, it'll be concatenated directly thus it must be on current directory, if it's meant to be recursively anywhere under current directory, prefix it with regex .*?  
 It's good to read the comments within script.  
 E.g,
-Let /c/usr/bin/hello folder containing files:  
+Let /home/hello folder containing files:  
 world001  
 world002  
 wood001  
@@ -37,7 +37,7 @@ wine007
 
 In absolute way:  
 
-ren ':(/c/u.*?llo/w\w+?d)\d+(\d) :\1xxx\2'  
+ren ':(/c/u.*?llo/\w+?d)\d+(\d) :\1xxx\2'  
 
 So it'd be containing:  
 worldxxx1  
@@ -48,12 +48,12 @@ wine007
 
 In relative way:  
 
-cd /c/usr/bin/hello  
+cd /home/hello  
 ren ':(w\w+?d)\d+(\d) :\1xxx\2'  
   or  
 ren ':(.*?w\w+?d)\d+(\d) :\1xxx\2'  
 
-But the latter will also search and rename /c/usr/bin/hello/world/world007 to /c/usr/bin/hello/world/worldxxx7  if such exists   
+But the latter will also search and rename /c/usr/bin/hello/world/world007 to /home/hello/world/worldxxx7  if such exists   
 
 DISCLAIMER:  
 It's been sucessfully tested though not exhaustively and just provided "as is". Do on your own risk, you'd better back up your data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
