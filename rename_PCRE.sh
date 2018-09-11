@@ -20,13 +20,13 @@ then
 	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
 	if test ! -e $l mkdir $l
-	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
+	mv -vS _old $o $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 else
 	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
 	if test ! -e $l mkdir $l
-	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
+	mv -vS _old $o $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 fi
 elif test $s ;then mv -vS _old $o $*
