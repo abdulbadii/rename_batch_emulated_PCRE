@@ -11,7 +11,7 @@ b=${s#* :}
 # converting PCRE to GNU-extended regex
 x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
 echo GNU-ext regex:  $x
-# The RHS below after '$' char if Linux: \n, if ported on Windows (Msys2): \r\n if ported on Mac:  \r
+# The RHS below after '$' char if Linux: \n, if Windows port (Msys2): \r\n if Mac port: \r  
 IFS=$'\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
@@ -19,11 +19,13 @@ then
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
 	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
+	if test ! -e $l mkdir $l
 	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 else
 	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
+	if test ! -e $l mkdir $l
 	mv $o -vS _old $l `echo $l | sed -r "s:$x:$b:i"`
 	}
 fi
