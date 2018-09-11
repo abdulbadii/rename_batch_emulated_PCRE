@@ -19,14 +19,18 @@ then
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
 	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
-	if test ! -e $l mkdir $l
-	mv -vS _old $o $l `echo $l | sed -r "s:$x:$b:i"`
+	t=`echo $l | sed -r "s:$x:$b:i"`
+	p="${t%/*}"
+	if test ! -e $p	;then mkdir $p ;fi
+	mv -vS _old $o "$l" "$t"
 	}
 else
 	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
-	if test ! -e $l mkdir $l
-	mv -vS _old $o $l `echo $l | sed -r "s:$x:$b:i"`
+	t=`echo $l | sed -r "s:$x:$b:i"`
+	p="${t%/*}"
+	if test ! -e $p	;then mkdir $p ;fi
+	mv -vS _old $o "$l" "$t
 	}
 fi
 elif test $s ;then mv -vS _old $o $*
