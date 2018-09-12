@@ -21,16 +21,16 @@ then
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
-	if test ! -e $p	;then mkdir $p ;fi
-	mv -vS _old $o "$l" "$t"
+	if test ! -e $p	;then mkdir -p $p ;fi
+	mv -vS .old $o "$l" "$t"
 	}
 else
 	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
-	if test ! -e $p	;then mkdir $p ;fi
-	mv -vS _old $o "$l" "$t
+	if test ! -e $p	;then mkdir -p $p ;fi
+	mv -vS .old $o "$l" "$t
 	}
 fi
 elif test $s ;then mv -vS _old $o $*
