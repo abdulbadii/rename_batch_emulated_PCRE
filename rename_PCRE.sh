@@ -30,9 +30,13 @@ else
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
 	if test ! -e $p	;then mkdir -p $p ;fi
-	mv -vS .old $o "$l" "$t
+	mv -vS .old $o "$l" "$t"
 	}
 fi
-elif test $s ;then mv -vS _old $o $*
-fi;}
+elif test $s
+then
+	test -e $* ||mkdir -p "$*"
+	mv -vS .old $o "$*"
+fi
+}
 
