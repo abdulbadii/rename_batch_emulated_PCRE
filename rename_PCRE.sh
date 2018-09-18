@@ -1,17 +1,18 @@
-#! /usr/bin/bash
 ren() {
-s=$*;o=
-[[ $1 =~ ^- ]]	&&(o=$1;s=$2)
+s="$@";o=
+[[ $1 =~ ^- ]]	&&(o=$1;s=${@:2})
 if [[ $s =~ ^: ]]
 then
 s=${s:1}
-[[ $s =~ ' :' ]] ||{ echo Put in the other ':' as marker for regex replacement pattern;return; }
+[[ $s =~ ' :' ]] ||{ echo Put in the other ':' marker for regex replacement area;return; }
 a=${s% :*};a=${a%% }
 b=${s#* :}
 # converting PCRE to GNU-extended regex
 x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
 echo GNU-ext regex:  $x
-# The RHS below after '$' char if Linux: \n, if Windows port (Msys2): \r\n if Mac port: \r  
+# RHS below after $, for Linux: \n, Mac port: \r,   
+Windows port (Msys2): \r\n and   
+insert "find -noleaf" option on Windows port line 21,29, so: find <the dir> -noleaf -regextype....
 IFS=$'\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
@@ -21,7 +22,7 @@ then
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
-	if test ! -e $p	;then mkdir -p $p ;fi
+	if test ! -e "$p"	;then mkdir -p "$p" ;fi
 	mv -vS .old $o "$l" "$t"
 	}
 else
@@ -29,14 +30,15 @@ else
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
-	if test ! -e $p	;then mkdir -p $p ;fi
+	if test ! -e "$p"	;then mkdir -p "$p" ;fi
 	mv -vS .old $o "$l" "$t"
 	}
 fi
-elif test $s
-then
-	test -e $* ||mkdir -p "$*"
-	mv -vS .old $o "$*"
-fi
+elif  test "$s" ;then
+	i=;for f in $s
+	{ ((i++));test $i = 2 &&p=$f }
+	p=${p%/*}
+	test -e $p ||mkdir -p $p
+	mv -vS .old $o $*
+fi;
 }
-
