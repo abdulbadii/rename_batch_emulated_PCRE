@@ -9,7 +9,7 @@ Windows port, on Msys2 terminal, type: pacman -S mingw-w64-x86_64-pcre2
 or get from many sources else such as: https://github.com/luvit/pcre2/blob/master/src/pcre2grep.c compile and install  
 In any case rename it to 'gre' for brevity  
 
-The script here is for renaming. For a copying one, duplicate the function namedly 'ren' and change it you like, say 'copy', then use that instead of 'ren' shown below. In line 22 and 27, replace 'mv'with 'cp'  
+The script here is for renaming. For a copying one, duplicate the function namedly 'ren' and change it you like, say 'copy', then use that instead of 'ren' shown below. In line 21 and 29, replace 'mv'with 'cp'  
 
 # Usage  
 ren [mv option] SOURCE DEST  
