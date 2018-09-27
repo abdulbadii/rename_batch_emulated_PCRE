@@ -12,14 +12,14 @@ x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/
 echo GNU-ext regex:  $x
 # RHS below after $, for Linux: \n, Mac port: \r, Windows port (Msys2):  
 #	\r\n
-#	insert "find -noleaf" option at line 21,29 thus: find <the dir> -noleaf -regextype....(so on)
+#	insert find "-noleaf" option at line 21,29 thus: find <the dir> -noleaf -regextype....(so on)
 #	for NTFS optimization  
 IFS=$'\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
 	# s is the first longest literal
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
-	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
+	for l in `find ${s%/*} -type f -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
@@ -27,7 +27,7 @@ then
 	mv -vS .old $o "$l" "$t"
 	}
 else
-	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
+	for l in `find ~+ -type f -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
