@@ -11,7 +11,7 @@ b=${s#* :}
 x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
 echo GNU-ext regex:  $x
 # RHS below after $, for Linux: \n, Mac port: \r, Windows port (Msys2):  
-#	\r\n and insert "find -noleaf" option at line 21,29 thus: find <the dir> -noleaf -regextype....(so on)  
+#	\r\n and insert "find -noleaf" option at line 21,29 thus: find <the dir> -noleaf -regextype....(so on)  for NTFS optimization  
 IFS=$'\n'
 if [[ ${a##'('} =~ ^/ ]]
 then
@@ -40,4 +40,5 @@ elif  test "$s" ;then
 	test -e $p ||mkdir -p $p
 	mv -vS .old $o $*
 fi;
+unset IFS # set it back to default
 }
