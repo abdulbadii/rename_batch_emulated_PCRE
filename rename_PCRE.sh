@@ -19,7 +19,7 @@ if [[ ${a##'('} =~ ^/ ]]
 then
 	# s is the first longest literal
 	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
-	for l in `find ${s%/*} -type f -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
+	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
@@ -27,7 +27,7 @@ then
 	mv -vS .old $o "$l" "$t"
 	}
 else
-	for l in `find ~+ -type f -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
+	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
 	{
 	t=`echo $l | sed -r "s:$x:$b:i"`
 	p="${t%/*}"
