@@ -20,9 +20,8 @@ rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to a
 Note the doubled semicolon (;;) as the start of destination field and note the enclosure by quote pair, ' ' or " "  
 
 The mv option if any is a spaceless field/string of single or multi option put sequentially e.g:  
--b Backup if the target DEST name exists, by adding '_old' suffix  
--fu if the DEST name exists, force to overwrite it only if SOURCE is newer than it so it will be Updating  
-type mv --help, for explanation  
+-fu if the DEST name exists, force to overwrite it only if SOURCE is newer so it will be Updating  
+type mv --help, for explanations  
 
 The searching is ignoring (insensitive to) letter case. It'd accept either absolute or relative path argument whose patterns will match. As for relative path argument, it'll be concatenated directly thus it must be on current directory, if it's meant to be recursively anywhere under current directory, prefix it with keyword: **  
 E.g,  
@@ -53,7 +52,8 @@ ren ':(**w\w+?d)\d+(\d) :\1xxx\2'
 
 But the latter will also search and rename /c/usr/bin/hello/world/world007 to /home/hello/world/worldxxx7  if such exists   
 
+It will backup or rename the target DEST if its name is existing by adding '_old' suffix  
+
 DISCLAIMER:  
 It's been sucessfully tested though not exhaustively and just provided "as is".   
-You'd better use -b option to back up existing name
 Do on your own risk, you'd better back up your data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
