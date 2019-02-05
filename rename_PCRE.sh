@@ -1,46 +1,39 @@
-ren() {
+ren(){
 s="$@";o=
-[[ $1 =~ ^- ]]	&&(o=$1;s=${@:2})
-if [[ $s =~ ^: ]]
+[[ $1 =~ ^- ]]	&&{ o=$1;s=${@:2};t=${@:3}; }
+if [[ $s =~ ' ;;' ]]
 then
-s=${s:1}
-[[ $s =~ ' :' ]] ||{ echo Put in the other ':' marker for regex replacement area;return; }
-a=${s% :*};a=${a%% }
-b=${s#* :}
-# converting PCRE to GNU-extended regex
-x=`echo $a |sed -r 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g'`
-echo GNU-ext regex:  $x
-# RHS below after $, for Linux: \n, Mac port: \r, Windows port (Msys2):  
-#	\r\n
-#	insert find "-noleaf" option at line 21,29 thus: find <the dir> -noleaf -regextype....(so on)
-#	for NTFS optimization  
-IFS=$'\n'
-if [[ ${a##'('} =~ ^/ ]]
-then
-	# s is the first longest literal
-	s=`echo $x |sed -r 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`
-	for l in `find ${s%/*} -regextype posix-extended -iregex "$x" | gre -ie "${a/'/'/'\/'}"`
-	{
-	t=`echo $l | sed -r "s:$x:$b:i"`
-	p="${t%/*}"
-	if test ! -e "$p"	;then mkdir -p "$p" ;fi
-	mv -vS .old $o "$l" "$t"
-	}
-else
-	for l in `find ~+ -regextype posix-extended -iregex "$PWD/${x}" | gre -ie "$a"`
-	{
-	t=`echo $l | sed -r "s:$x:$b:i"`
-	p="${t%/*}"
-	if test ! -e "$p"	;then mkdir -p "$p" ;fi
-	mv -vS .old $o "$l" "$t"
-	}
+[[ $s =~ ' ;;' ]] ||{ echo Make the ';;' marker for regex replacement;return; }
+a=${s%[^ ]*;;*};b=${s#"$a"};a=$a${b:0:1}
+b=${s#* ;;}
+# PCRE --> GNU-ext regex
+x=`echo $a |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g; s/([^\])\.\*/\1[^\/]*/; s/\*\*/.*/'`
+r=${x%%[!.*]*}
+[[ "$r" =~ \.\*+ ]]&&{ x=${x:${#r}};r='.*'; }
+# below RHS after $ '\n' for Linux, Windows port (Msys/mingw): '\r\n', Mac port: '\r'
+IFS=$'\r\n'
+l==;while([ "$l" ])
+do l=
+	if [[ "$x" =~ ^\(?/ ]] ;then
+		s=`echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`	# s is the first longest literal
+		for l in `find ${s%/*}/ -regextype posix-extended -iregex "$r$x" |head -n99`
+		{
+			t=`echo $l | sed -E "s|$x|$b|i"`
+			[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ] &&mkdir -p "$p"; }
+			mv -vS .old $o "$l" "$t"
+		}
+	else
+		for l in `find ~+ -type f -regextype posix-extended -iregex "$PWD/$r$x" |head -n99`
+		{
+		t=`echo $l | sed -E "s|$x|$b|i"`
+		[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ]&&mkdir -p "$p"; }
+		mv -vS .old $o "$l" "$t"
+		};fi
+done
+unset IFS
+elif test "$s" ;then
+	
+	[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ]&&mkdir -p "$p"; }
+	mv -vS .old $o $s $t
 fi
-elif  test "$s" ;then
-	i=;for f in $s
-	{ ((i++));test $i = 2 &&p=$f }
-	p=${p%/*}
-	test -e $p ||mkdir -p $p
-	mv -vS .old $o $*
-fi;
-unset IFS # set it back to default
 }
