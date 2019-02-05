@@ -1,10 +1,9 @@
-# GNU-extended regex controlled rename and copy operation, in bulk and global using Linux Bash script  
+# GNU-extended regex controlled rename and copy operation globally, in bulk using Linux Bash script  
 Requirements:  
 Bash, find, sed, mkdir, and mv or cp, to rename use mv, to copy use cp.  
-As Windows port, get MSYS2 on https://sourceforge.net/projects/msys2/files/latest/download?source=directory  
-As Mac port, get on https://www.macports.org or Homebrew https://brew.sh/  
+As Windows port, get MSYS2 on https://sourceforge.net/projects/msys2/files/latest/download?source=directory As Mac port, get on https://www.macports.org or Homebrew https://brew.sh/  
   
-
+Copy the Bash script and paste inserting it into ~/.bashrc file  
 The script here is for renaming. For a copying one, duplicate the function namedly 'ren' and change to what you like for instance 'copy', use that instead of 'ren' shown below. In line 21 and 29, replace 'mv'with 'cp'  
 
 # Usage  
@@ -17,7 +16,7 @@ or if to duplicate and change the function name to copy:
 copy [cp option] 'SOURCE  ;;DEST'  
 
 rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in SOURCE  
-Note the doubled semicolon (;;) as the start of destination field and note the enclosure by quote pair, ' ' or " "  
+Note the doubled semicolon (;;) as the start of destination field, and the enclosure by quote pair either ' ' or " "  
 
 The mv option if any is a spaceless field/string of single or multi option put sequentially e.g:  
 -fu if the DEST name exists, force to overwrite it only if SOURCE is newer so it will be Updating  
