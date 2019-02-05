@@ -4,7 +4,6 @@ if [[ $@ =~ ' ;;' ]]
 then
 s=$@
 [[ $1 =~ ^-[^\;]+ ]]	&&{ o=$1;s=${@:2}; }
-[[ $s =~ ' ;;' ]] ||{ echo Make the ';;' marker for regex replacement;return; }
 a=${s%[^ ]*;;*};a=$a${s:${#a}:1}
 b=${s#* ;;}
 # PCRE --> GNU-ext regex
