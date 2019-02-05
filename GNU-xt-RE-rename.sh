@@ -12,7 +12,7 @@ x=`echo $a |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/
 r=${x%%[!.*]*}
 [[ "$r" =~ \.\* ]]&&{ x=${x:${#r}};r='.*'; }
 # below RHS after $ '\n' for Linux, Windows port (Msys/mingw): '\r\n', Mac port: '\r'
-IFS=$'\r\n'
+IFS=$'\n'
 l==;while([ "$l" ])
 do l=
 	if [[ "$x" =~ ^\(*/ ]] ;then
