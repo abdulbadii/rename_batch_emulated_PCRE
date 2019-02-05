@@ -20,20 +20,20 @@ do l=
 		{
 			t=`echo $l | sed -E "s|$x|$b|i"`
 			[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ] &&mkdir -p "$p"; }
-			mv -vS .old $o "$l" "$t"
+			mv -bvS .old $o "$l" "$t"
 		}
 	else
 		for l in `find ~+ -type f -regextype posix-extended -iregex "$PWD/$r$x" |head -n99`
 		{
 		t=`echo $l | sed -E "s|$x|$b|i"`
 		[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ]&&mkdir -p "$p"; }
-		mv -vS .old $o "$l" "$t"
+		mv -bvS .old $o "$l" "$t"
 		};fi
 done
 unset IFS
 elif test "$s" ;then
 	
 	[[ $t =~ / ]] &&{ p="${t%/*}"; [ ! -e "$p" ]&&mkdir -p "$p"; }
-	mv -vS .old $o $s $t
+	mv -bvS .old $o $s $t
 fi
 }
