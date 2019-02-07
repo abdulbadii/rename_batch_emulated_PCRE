@@ -7,7 +7,7 @@ let i++
 case ${a:0:2} in
 -t) T=1;;
 -c) c=-regex;I=;;
--[A-Za-z]) o="$o $a";;
+-A-Sa-suvz) o="$o $a";;
 *)
 if [[ "$@" =~ ' ;;' ]]
 then
