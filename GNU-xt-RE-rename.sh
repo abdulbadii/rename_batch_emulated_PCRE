@@ -1,13 +1,20 @@
+#! /usr/bin/bash
 ren(){
-o=
-if [[ $@ =~ ' ;;' ]]
+T=;i=;o=;c=-iregex;I=i;
+for a
+{
+let i++
+case ${a:0:2} in
+-t) T=1;;
+-c) c=-regex;I=;;
+-[A-Za-z]) o="$o $a";;
+*)
+if [[ "$@" =~ ' ;;' ]]
 then
-s=$@
-[[ $1 =~ ^-[^\;]+ ]]	&&{ o=$1;s=${@:2}; }
-a=${s%[^ ]*;;*};a=$a${s:${#a}:1}
-b=${s#* ;;}
+x=${a%[^ ]*;;*};x=$x${a:${#x}:1}
+y=${s#* ;;}
 # PCRE --> GNU-ext regex
-x=`echo $a |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g; s/([^\])\.\*/\1[^\/]*/; s/\*\*/.*/'`
+x=`echo $x |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g; s/([^\])\.\*/\1[^\/]*/g; s/\*\*/.*/g'`
 r=${x%%[!.*]*}
 [[ "$r" =~ \.\* ]]&&{ x=${x:${#r}};r='.*'; }
 # below RHS after $ '\n' for Linux, Windows port (Msys/mingw): '\r\n', Mac port: '\r'
@@ -16,24 +23,32 @@ l==;while([ "$l" ])
 do l=
 	if [[ "$x" =~ ^\(*/ ]] ;then
 		s=`echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g'`	# s is the first longest literal
-		for l in `find ${s%/*} -regextype posix-extended -iregex "$x" |head -n99`
+		for F in `find ${s%/*} -regextype posix-extended $c "$x" |head -n99`
 		{
-			t=`echo $l | sed -E "s|$x|$b|i"`
-			mkdir -p "${t%/*}"
-			mv -bvS .old $o "$l" "$t"
+			t=`echo $F | sed -E "s|$x|$y|$I"`
+			if [ $T ] ;then echo "Would rename $F -> $t"
+			else 
+				mkdir -p "${t%/*}"
+				mv -bvS .old $o "$F" "$t"
+			fi
 		}
 	else
-		for l in `find ~+ -type f -regextype posix-extended -iregex "$PWD/$r$x" |head -n99`
+		for F in `find ~+ -type f -regextype posix-extended $c "$PWD/$r$x" |head -n99`
 		{
-		t=`echo $l | sed -E "s|$x|$b|i"`
-		mkdir -p "${t%/*}"
-		mv -bvS .old $o "$l" "$t"
+		t=`echo $F | sed -E "s|$x|$y|$I"`
+		if [ $T ] ;then echo "Would rename $F -> $t"
+		else
+			mkdir -p "${t%/*}"
+			mv -bvS .old $o "$F" "$t"
+		fi
 		};fi
 done
 unset IFS
 elif test "$s" ;then
-	s=$1;t=$2;	[[ $1 =~ ^- ]]&&{ o=$1;s=$2;t=$3; }
-	mkdir -p "${t%/*}"
-	mv -bvS .old $o $s $t
-fi
+	a=${@:i}
+	mkdir -p "${@: -1}"
+	mv -bvS .old $o ${@:i}
+fi;;
+esac
+}
 }
