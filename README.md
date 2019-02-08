@@ -14,7 +14,7 @@ literal rename operation by mv command
 ren [mv option] 'SOURCE  ;;DEST'  
 or  
 copy [cp option] 'SOURCE  ;;DEST'   
-if it's duplicated and changed function name to 'copy':  
+if it's been duplicated and changed its name to 'copy':  
  
 rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in the SOURCE  
 Note the doubled semicolon (;;) as the start of destination field and the enclosure by quote pair either ' ' or " "  
