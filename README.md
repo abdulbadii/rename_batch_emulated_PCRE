@@ -8,11 +8,11 @@ The script here is for renaming. For copying, duplicate function 'ren' script an
 
 # Usage  
 ren [mv option] SOURCE DEST  
-literal rename operation by mv command
+literal rename operation by mv command  
 
 
 ren [mv option] 'SOURCE  ;;DEST'  
-or 
+or  
 copy [cp option] 'SOURCE  ;;DEST'   
 if it's duplicated and changed function name to 'copy':  
  
