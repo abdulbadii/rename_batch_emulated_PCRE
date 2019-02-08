@@ -4,7 +4,7 @@ Bash, find, sed, mkdir, head and mv or cp, use mv to rename, use cp to copy.
 As Windows port, get MSYS2 on https://sourceforge.net/projects/msys2/files/latest/download?source=directory As Mac port, get on https://www.macports.org or Homebrew https://brew.sh/  
   
 Copy the Bash script and paste, preappend it into ~/.bashrc file  
-The script here is for renaming. For copying, duplicate function 'ren' script and change to whatever you like e.g. 'copy' and use that instead, then at any lines started with command "mv " replace it with "cp "  
+The script here is for renaming. For copying, duplicate function 'ren' script and change to whatever you like e.g. 'copy', use that instead after changing any line started with command "mv " replace it with "cp "  
 
 # Usage  
 ren [mv option] SOURCE DEST  
