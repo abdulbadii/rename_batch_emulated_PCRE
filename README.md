@@ -54,8 +54,4 @@ ren ':(w\w+?d)\d+(\d) :\1xxx\2'
 ren ':(**w\w+?d)\d+(\d) :\1xxx\2'  
 
 But the latter will also search and rename /home/hello/world/world007 to /home/hello/world/worldxxx7  if such exists  
-It will always backup the target DEST by renaming, suffixing it with '_old', if the same name exists   
-
-DISCLAIMER:  
-It is just provided "as is". It has been sucessfully tested though not exhaustively.   
-Do on your own risk, you'd better back up your data first. No guarantee for perfect accuracy and no warranty for data loss and damage.
+It will always backup the target DEST by renaming, suffixing it with '_old', if the same name exists
