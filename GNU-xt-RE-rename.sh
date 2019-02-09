@@ -26,7 +26,7 @@ do l=
 		for F in `find ${s%/*} -regextype posix-extended $c "$x" |head -n99`
 		{
 			t=`echo $F | sed -E "s|$x|$y|$I"`
-			if [ $T ] ;then echo -e Would rename '\033[1;36m' "$F -> $t" '\033[0m' 
+			if [ $T ] ;then echo -e '\033[1;36m'Would rename '\033[1;37m'"$F -> $t"
 			else 
 				mkdir -p "${t%/*}"
 				mv -bvS .old $o "$F" "$t"
@@ -36,7 +36,7 @@ do l=
 		for F in `find ~+ -type f -regextype posix-extended $c "$PWD/$r$x" |head -n99`
 		{
 		t=`echo $F | sed -E "s|$x|$y|$I"`
-		if [ $T ] ;then echo -e Would rename '\033[1;36m' "$F -> $t" '\033[0m' 
+		if [ $T ] ;then echo -e '\033[1;36m'Would rename '\033[1;37m'"$F -> $t"
 		else
 			mkdir -p "${t%/*}"
 			mv -bvS .old $o "$F" "$t"
