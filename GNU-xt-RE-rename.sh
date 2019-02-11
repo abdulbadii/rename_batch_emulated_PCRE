@@ -42,8 +42,7 @@ do l=
 		};fi
 done
 unset IFS
-elif test "$s" ;then
-	a=${@:i}
+else
 	mkdir -p "${@: -1}"
 	mv -bvS .old $o ${@:i}
 fi;;
