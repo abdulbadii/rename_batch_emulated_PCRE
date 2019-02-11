@@ -43,8 +43,9 @@ do l=
 done
 unset IFS
 else
-	mkdir -p "${@: -1}"
-	mv -bvS .old $o ${@:i}
+	t=${@: -1}
+	mkdir -p "${t%/*}"
+	mv -bvS .old $o ${@:i} $t
 fi;;
 esac
 }
