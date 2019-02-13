@@ -16,7 +16,7 @@ y=${a#* ;;}
 # PCRE --> GNU-ext regex
 x=`echo $x |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])/\10-9\2/g ;s/\\\d/[0-9]/g; s/([^\])\.\*/\1[^\/]*/g; s/\*\*/.*/g'`
 # below RHS after $ '\n' for Linux, Windows port (Msys/mingw): '\r\n', Mac port: '\r'
-IFS=$'\r\n'
+IFS=$'\n'
 l==;while([ "$l" ])
 do l=
 	if [[ "$x" =~ ^\(*/ ]] ;then
