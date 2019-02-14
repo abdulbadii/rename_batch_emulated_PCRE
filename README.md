@@ -4,7 +4,7 @@ Bash, find, sed, mkdir, head and mv or cp, use mv to rename, use cp to copy.
 
 As Windows port, get MSYS2 on https://sourceforge.net/projects/msys2/files/latest/download?source=directory As Mac port, get on https://www.macports.org or Homebrew https://brew.sh/  
   
-Copy the Bash script and paste, preappend it into ~/.bashrc file  
+Copy the Bash script and paste, prepend it into ~/.bashrc file  
 The script here is for renaming. For copying, duplicate function 'ren' script and change to whatever you like e.g. 'copy', use that instead after changing any line started with command "mv " replace it with "cp "  
 
 # Usage  
@@ -16,15 +16,15 @@ The script here is for renaming. For copying, duplicate function 'ren' script an
 or  
 
 - copy [cp option..] 'SOURCE  ;;DEST'   
-(if 'ren' function is duplicated and changed its name to 'copy'):  
- 
-rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in the SOURCE  
-Note the doubled semicolon (;;) as the start of destination field and the enclosure by quote pair either ' ' or " "  
+if 'ren' function is duplicated and changed its name to 'copy'  
+
+Rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in the SOURCE  
+Note the doubled semicolon (;;) as the start of destination field and the enclosure by pair of either ' ' or " "  
 
 The searching default is ignoring (insensitive to) the letter case. But it has options  
 
 -c    Force the search to be case sensitive   
--t    Do for testing only, do normally as instructed but will not effect anything, instead only report what is supposed to occur   
+-t    For testing only, do normally as instructed but will not effect anything, instead only report what is supposed to perform   
    
 And are adjoined with all 'mv' options except -t option as it is replaced by -t test as above, type mv --help for more explanation  
 
