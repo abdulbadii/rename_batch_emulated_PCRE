@@ -9,8 +9,7 @@ case ${a:0:2} in
 -[A-Sa-suvz]) o="$o $a";;
 -*) echo Unrecognized option \'$a\';;
 *)
-if [[ "$@" =~ ' ;;' ]]
-then
+if [[ "$@" =~ ' ;;' ]];then
 x=${a%[^ ]*;;*};x=$x${a:${#x}:1}
 y=${a#* ;;}
 # PCRE --> GNU-ext regex
@@ -18,30 +17,25 @@ x=$(echo $x |sed -E 's/(\[.*?)\\\w([^]]*\])/\1a-z0-9\2/g; s/(\[.*?)\\\d([^]]*\])
 # below RHS after $ '\n' for Linux, Windows port (Msys/mingw): '\r\n', Mac port: '\r'
 v=${x#.\*};v=${v#/}
 IFS=$'\r\n'
-F==;while([ "$F" ])
-do F=
-	if [[ "$x" =~ ^\(*/ ]] ;then
-		s=$(echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/ ;s/[()]//g')	# s is the first longest literal
-		for F in `find ${s%/*} -regextype posix-extended $c "$x" |head -n99`
-		{
+if [[ "$x" =~ ^\(*/ ]] ;then
+	s=$(echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/;s~(.+)/.*~\1~;s/[()]//g')	#the first longest literal
+else s=~+;x=$PWD/$x
+fi
+if [ $T ] ;then
+	for F in `find $s -regextype posix-extended $c "$x" |head -n99`
+	{	t=`echo $F | sed -E "s|$v|$y|$I"`
+		echo -e '\033[0;36m'Would rename '\033[0m'"$F -> $t";}
+else
+	F==;while([ "$F" ])
+	do F=
+	for F in `find $s -regextype posix-extended $c "$x" |head -n99`
+	{
 		t=`echo $F | sed -E "s|$v|$y|$I"`
-		if [ $T ] ;then echo -e '\033[0;36m'Would rename '\033[0m'"$F -> $t"
-		else 
-			mkdir -p "${t%/*}"
-			mv -bvS .old $o "$F" "$t"
-		fi
-		}
-	else
-		for F in `find ~+ -regextype posix-extended $c "$PWD/$x" |head -n99`
-		{
-		t=`echo $F | sed -E "s|$v|$y|$I"`
-		if [ $T ] ;then echo -e '\033[0;36m'Would rename '\033[0m'"$F -> $t"
-		else
-			mkdir -p "${t%/*}"
-			mv -bvS .old $o "$F" "$t"
-		fi
-		};fi
-done
+		mkdir -p "${t%/*}"
+		mv -bvS .old $o "$F" "$t"
+	}
+	done
+fi
 unset IFS
 else
 	t=${@: -1}
