@@ -7,7 +7,7 @@ case ${a:0:3} in
 -N) N=1;;
 -c) c=-regex;I=;;
 -[HLPRSTabdfilnpstuvxz]) o="$o $a";;
---h|-h) echo -e open 'https://github.com/abdulbadii/GNU-ext-regex-rename/edit/master/README.md\n';mv --help|sed -E 's/\bmv\b/ren/';return;;
+--h|-h) echo -e 'open;\nhttps://github.com/abdulbadii/GNU-ext-regex-rename\n';mv --help|sed -E 's/\bmv\b/ren/';return;;
 -*) echo Unrecognized option \'$a\';return;;
 *)
 if [[ "$@" =~ ' ;;' ]];then
