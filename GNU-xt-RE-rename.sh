@@ -1,13 +1,14 @@
 #! /usr/bin/bash
 ren(){
-T=;i=;o=;c=-iregex;I=i;
+N=;i=;o=;c=-iregex;I=i;
 for a
 {
-case ${a:0:2} in
--t) T=1;;
+case ${a:0:3} in
+-N) N=1;;
 -c) c=-regex;I=;;
--[A-Sa-suvz]) o="$o $a";;
--*) echo Unrecognized option \'$a\';;
+-[HLPRSTabdfilnpstuvxz]) o="$o $a";;
+--h|-h) mv --help|sed -E 's/\bmv\b/ren/';return;;
+-*) echo Unrecognized option \'$a\';return;;
 *)
 if [[ "$@" =~ ' ;;' ]];then
 x=${a%[^ ]*;;*};x=$x${a:${#x}:1}
@@ -21,8 +22,8 @@ if [[ "$x" =~ ^\(*/ ]] ;then
 	s=$(echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/;s~(.+)/.*~\1~;s/[()]//g')	#the first longest literal
 else s=~+;x=$PWD/$x
 fi
-if [ $T ] ;then
-	for F in `find $s -regextype posix-extended $c "$x" |head -n99`
+if [ $N ] ;then
+	for F in `find $s -regextype posix-extended $c "$x" |head -n313`
 	{	t=`echo $F | sed -E "s|$v|$y|$I"`
 		echo -e '\033[0;36m'Would rename '\033[0m'"$F -> $t";}
 else
