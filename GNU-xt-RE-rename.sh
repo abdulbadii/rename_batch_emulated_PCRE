@@ -7,7 +7,8 @@ case ${a:0:3} in
 -N) N=1;;
 -c) c=-regex;I=;;
 -[HLPRSTabdfilnpstuvxz]) o="$o $a";;
---h|-h) echo -e 'open;\nhttps://github.com/abdulbadii/GNU-ext-regex-rename\n';mv --help|sed -E 's/\bmv\b/ren/';return;;
+--h|-h) echo -e For more help go to'\nhttps://github.com/abdulbadii/GNU-ext-regex-rename/edit/master/README.md\n'
+	mv --help|sed -Ee 's/\bmv\b/ren/;8a\ \ -c\t\t\t\tCase-sensitive search' -e '14a\ \ -N\t\t\t\tNot really to execute only tell what it will do. Provide as a test';return;;
 -*) echo Unrecognized option \'$a\';return;;
 *)
 if [[ "$@" =~ ' ;;' ]];then
@@ -39,9 +40,7 @@ else
 fi
 unset IFS
 else
-	t=${@: -1}
-	mkdir -p "${t%/*}"
-	mv -bvS .old $o ${@: -2} $t
+	t=${@: -1};mkdir -p "${t%/*}";mv -bvS .old $o ${@: -2} $t
 fi;;
 esac
 }
