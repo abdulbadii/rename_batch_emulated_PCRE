@@ -9,14 +9,16 @@ The script here is for renaming. For copying, duplicate function 'ren' script an
 
 # Usage  
 - ren [mv options..] SOURCE DEST  
- literal rename operation by mv command  
+   literal rename operation by mv command  
+ -ren -h or --help  
+    help explaining the options i.e. mv options 
 
 - ren [mv option..] 'SOURCE  ;;DEST'  
 
 or  
 
 - copy [cp option..] 'SOURCE  ;;DEST'   
-if 'ren' function is duplicated and changed its name to 'copy'  
+if 'ren' function was duplicated and changed its name to 'copy'  
 
 Rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in the SOURCE  
 Note the doubled semicolon (;;) as the start of destination field and the enclosure by pair of either ' ' or " "  
@@ -24,7 +26,7 @@ Note the doubled semicolon (;;) as the start of destination field and the enclos
 The searching default is ignoring (insensitive to) the letter case. But it has options  
 
 -c    Force the search to be case sensitive   
--t    For testing only, do normally as instructed but will not effect anything, instead only report what is supposed to perform   
+-N    For testing only, do normally as instructed but will not effect anything, instead only report what is supposed to perform   
    
 And are adjoined with all 'mv' options except -t option as it is replaced by -t test as above, type mv --help for more explanation  
 
@@ -56,5 +58,5 @@ ren '(w\w+?d)\d+(\d) ;;\1xxx\2'
   or  
 ren '(**w\w+?d)\d+(\d) ;;\1xxx\2'  
 
-But the latter will also find then rename /home/hello/world/world007 to /home/hello/world/worldxxx7  if such exists  
-It will always backup the target DEST if the same name exists, by renaming and suffixing it with "_old"
+But the latter will also find and rename /home/hello/world/world007 to /home/hello/world/worldxxx7  if such exists  
+It will always backup the target DEST if duplicate name exists by renaming, suffixing it with "_old"
