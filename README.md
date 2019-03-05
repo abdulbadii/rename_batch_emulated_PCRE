@@ -11,14 +11,14 @@ The script here is for renaming. For copying, duplicate function 'ren' script an
 - ren [mv options..] SOURCE DEST  
    literal rename operation by mv command  
  -ren -h or --help  
-    help explaining the options i.e. mv options 
+    help explaining all the options, mv options and few additional options 
 
 - ren [mv option..] 'SOURCE  ;;DEST'  
 
 or  
 
 - copy [cp option..] 'SOURCE  ;;DEST'   
-if 'ren' function was duplicated and changed its name to 'copy'  
+if 'ren' function was duplicated and given name 'copy'  
 
 Rename GNU-extended regex pattern SOURCE to become DEST which may backrefer to any captured group in the SOURCE  
 Note the doubled semicolon (;;) as the start of destination field and the enclosure by pair of either ' ' or " "  
@@ -59,4 +59,4 @@ ren '(w\w+?d)\d+(\d) ;;\1xxx\2'
 ren '(**w\w+?d)\d+(\d) ;;\1xxx\2'  
 
 But the latter will also find and rename /home/hello/world/world007 to /home/hello/world/worldxxx7  if such exists  
-It will always backup the target DEST if duplicate name exists by renaming, suffixing it with "_old"
+It always backs up the target DEST if its name exists by renaming it, suffixing with "_old"
