@@ -8,8 +8,8 @@ Copy the Bash script and paste, prepend it into ~/.bashrc file
 The script here is for renaming. For copying, duplicate whole function 'ren' and change to whatever you like, e.g. 'copy', and use that instead after changing all lines started with "mv ", replace each of "mv " with "cp "  
 
 # Usage  
- -ren -h or --help  
-    help explaining all the options, mv options and few additional options  
+- ren -h or --help  
+    help explaining all the options; mv options and few additional options  
 
 - ren [mv options..] SOURCE DEST  
    literal rename operation by mv command  
@@ -21,10 +21,10 @@ Note the doubled semicolon (;;) as the start of destination field, and it's encl
 
 The searching default is ignoring (insensitive to) the letter case. But it has options  
 
--c        Force the search to be case sensitive   
--f FILE or  
--fFILE    Get SOURCE from a FILE
--N        For testing only, do normally as instructed but will not effect anything, instead only report what is supposed to perform   
+- c        Force the search to be case sensitive   
+- f FILE or  
+- fFILE    Get list of the object's full path from FILE as opposed from the file system 
+- N        For testing only, do normally as instructed but will not effect anything, instead only report what it is supposed to execute   
    
 And may be adjoined with all 'mv' options.
 
