@@ -32,7 +32,7 @@ if((N==1));then
 	if [ "$f" ];then	while read -r F
 	do	[ -e $F ] ||{ F=$(echo $F|sed -E 's/[^!#-~]*([!#-~]+)[^!#-~]*/\1/;s~(\\+|//+)~/~g;s~\b([a-z]):(/|\W)~/\1/~i')
 			[ -e $F ] ||continue;}
-		t=`echo $F | sed -E "s|$v|$y|$I"`
+		t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
 		echo -ne '\033[0;36m'Would\ 
 		if [ ${F%/*} = ${t%/*} ];then	echo Rename
@@ -43,7 +43,7 @@ if((N==1));then
 		}
 	done<$f
 	else	for F in `find $s -regextype posix-extended $c "$x" |head -n499`
-	{	t=`echo $F | sed -E "s|$v|$y|$I"`
+	{	t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
 		echo -ne '\033[0;36m'Would\ 
 		if [ ${F%/*} = ${t%/*} ];then	echo Rename
@@ -58,7 +58,7 @@ else
 	if [ "$f" ];then	while read -r F
 	do	[ -e $F ] ||{ F=$(echo $F|sed -E 's/[^!#-~]*([!#-~]+)[^!#-~]*/\1/;s~(\\+|//+)~/~g;s~\b([a-z]):(/|\W)~/\1/~i')
 			[ -e $F ] ||continue;}
-		t=`echo $F | sed -E "s|$v|$y|$I"`
+		t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
 		mkdir -p "${t%/*}";mv -bS .old $o "$F" "$t"
 		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
