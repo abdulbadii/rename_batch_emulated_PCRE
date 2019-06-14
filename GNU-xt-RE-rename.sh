@@ -1,25 +1,23 @@
 #! /usr/bin/bash
 ren(){
-[ ${#@} \< 2 ]&&return
-f==;N=;i=;o=;c=-iregex;I=i;
+[[ "$1" =~ -h|--help ]]&&{ echo -e For more help go to https://github.com/abdulbadii/GNU-ext-regex-rename/blob/master/README.md
+	mv --help|sed -Ee 's/\bmv\b/ren/;8a\ \ -c\t\t\t\tCase sensitive search' -e '14a\ \ -N\t\t\t\tNot to really execute only tell what it will do. It is useful as a test' ;}
+(($#<2))&&return
+N=;i=;o=;c=-iregex;I=i;
+if [[ "${@: -1}" =~ ' ;;' ]];then
 for a
 {
-[ $f = : ]&&{ f=$a;continue;}
 case ${a:0:6} in
--f) f=:;;
--f????) f=${a:2};;
+-f????) f=${a:2};f=${f#=};;
 -N) N=1;;
 -c) c=-regex;I=;;
--[HLPRSTabdfilnpstuvxz]) o="$o $a";;
---h|-h) echo -e For more help go to'\nhttps://github.com/abdulbadii/GNU-ext-regex-rename/blob/master/README.md\n'
-	mv --help|sed -Ee 's/\bmv\b/ren/;8a\ \ -c\t\t\t\tCase sensitive search' -e '14a\ \ -N\t\t\t\tNot to really execute only tell what it will do. It is useful as a test';return;;
+-[HLPRSTabdfilnpstuvxz]) o=$o$a\ ;;
 -*) echo Unrecognized option \'$a\';return;;
 *)
 if [ ! -f $f ];then
 	f=$(echo $f| sed -E 's~\\\\~\\~g ;s~\\~/~g ;s~\b([a-z]):(/|\W)~/\1/~i')
 	[ -f $f ]||{ echo file does not exist;return;}
 fi
-if [[ "${@: -1}" =~ ' ;;' ]];then
 y=${a#* ;;}
 x=${a%[^ ]*;;*};x=$x${a:${#x}:1}
 # PCRE --> GNU-ext regex
@@ -29,7 +27,7 @@ if [[ "$x" =~ ^\(*(/|[a-z]:) ]] ;then
 	s=$(echo $x |sed -E 's/([^[|*+\\{.]+).*/\1/;s~(.+)/.*~\1~;s/[()]//g')	#the first longest literal
 else s=~+;x=$PWD/$x
 fi
-IFS=$'\r\n';LC_ALL=C
+IFS=$'\n';LC_ALL=C
 if((N==1));then
 	if [ "$f" ];then	while read -r F
 	do	[ -e $F ] ||{ F=$(echo $F|sed -E 's/[^!#-~]*([!#-~]+)[^!#-~]*/\1/;s~(\\+|//+)~/~g;s~\b([a-z]):(/|\W)~/\1/~i')
@@ -78,16 +76,14 @@ else
 		mkdir -p "${t%/*}";mv -bS .old $o "$F" "$t"
 		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
 		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
-		else	echo Moving then renaming $F -\> $t
+		else	echo Moving and renaming $F -\> $t
 		fi;}
 		}
 		done
-		fi
+	fi
 fi
-unset IFS
-else
-	t=xv${@: -1};mkdir -p "${t%/*}";mv -bvS .old $o ${@: -2} $t
-fi;;
-esac
+unset IFS;;esac
 }
+else	t=xv${@: -1};mkdir -p "${t%/*}";mv -bvS .old $o ${@: -2} $t
+fi
 }
