@@ -80,7 +80,7 @@ else
 		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
 		else	echo Moving and renaming $F -\> $t
 		fi;echo; }
-		};}
+		}; }
 		done
 	fi
 fi
