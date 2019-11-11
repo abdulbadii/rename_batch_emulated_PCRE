@@ -2,7 +2,6 @@
 ren(){
 [[ "$1" =~ -h|--help ]]&&{ echo -e For more help go to https://github.com/abdulbadii/GNU-ext-regex-rename/blob/master/README.md
 	mv --help|sed -Ee 's/\bmv\b/ren/;8a\ \ -c\t\t\t\tCase sensitive search' -e '14a\ \ -N\t\t\t\tNot to really execute only tell what it will do. It is useful as a test' ;}
-(($#<2))&&return
 N=;i=;o=;c=-iregex;I=i;
 if [[ "${@: -1}" =~ ' ;;' ]];then
 for a
@@ -60,11 +59,13 @@ else
 			[ -e $F ] ||continue;}
 		t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
-		mkdir -p "${t%/*}";mv -bS .old $o "$F" "$t"
+		mkdir -p "${t%/*}"
+		command mv -bS .old $o "$F" "$t" &&{
 		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
 		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
 		else	echo Moving and renaming $F -\> $t
-		fi;}
+		fi;echo; }
+		}
 	done<$f
 	else F==
 		while([ "$F" ])
@@ -73,12 +74,13 @@ else
 		{
 		t=`echo $F | sed -E "s|$v|$y|$I"`
 		[ $F = $t ]||{
-		mkdir -p "${t%/*}";mv -bS .old $o "$F" "$t"
+		mkdir -p "${t%/*}"
+		command mv -bS .old $o "$F" "$t" &&{
 		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
 		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
 		else	echo Moving and renaming $F -\> $t
-		fi;}
-		}
+		fi;echo; }
+		};}
 		done
 	fi
 fi
