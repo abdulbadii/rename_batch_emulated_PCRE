@@ -34,22 +34,22 @@ if((N==1));then
 		t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
 		echo -ne '\033[0;36m'Would\ 
-		if [ ${F%/*} = ${t%/*} ];then	echo Rename
-		elif [ ${F##*/} = ${t##*/} ];then	echo Move
-		else	echo Move then rename
+		if [ ${F%/*} = ${t%/*} ];then	echo -n Rename
+		elif [ ${F##*/} = ${t##*/} ];then	echo -n Move
+		else	echo -n Move then rename
 		fi
-		echo -e '\033[0m'"$F -> $t\n"
+		echo -e ' \033[0m'"$F -> $t\n"
 		}
 	done<$f
 	else	for F in `find $s -regextype posix-extended $c "$x" |head -n499`
 	{	t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
 		echo -ne '\033[0;36m'Would\ 
-		if [ ${F%/*} = ${t%/*} ];then	echo Rename
-		elif [ ${F##*/} = ${t##*/} ];then	echo Move
-		else	echo Move then rename
+		if [ ${F%/*} = ${t%/*} ];then	echo -n Rename
+		elif [ ${F##*/} = ${t##*/} ];then	echo -n Move
+		else	echo -n Move then rename
 		fi
-		echo -e '\033[0m'"$F -> $t\n"
+		echo -e ' \033[0m'"$F -> $t"
 		}
 	}
 	fi
@@ -61,10 +61,11 @@ else
 		[ $F = $t ]||{
 		mkdir -p "${t%/*}"
 		command mv -bS .old $o "$F" "$t" &&{
-		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
-		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
-		else	echo Moving and renaming $F -\> $t
-		fi;echo; }
+		echo -ne '\033[0;36m'
+		if [ ${F%/*} = ${t%/*} ];then	echo -e Renaming'\033[0m' $F -\> $t
+		elif [ ${F##*/} = ${t##*/} ];then	echo -e Moving'\033[0m' $F -\> $t
+		else	echo -e Moving and renaming'\033[0m' $F -\> $t
+		fi; }
 		}
 	done<$f
 	else F==
@@ -76,10 +77,11 @@ else
 		[ $F = $t ]||{
 		mkdir -p "${t%/*}"
 		command mv -bS .old $o "$F" "$t" &&{
-		if [ ${F%/*} = ${t%/*} ];then	echo Renaming $F -\> $t
-		elif [ ${F##*/} = ${t##*/} ];then	echo Moving $F -\> $t
-		else	echo Moving and renaming $F -\> $t
-		fi;echo; }
+		echo -ne '\033[0;36m'
+		if [ ${F%/*} = ${t%/*} ];then	echo -e Renaming'\033[0m' $F -\> $t
+		elif [ ${F##*/} = ${t##*/} ];then	echo -e Moving'\033[0m' $F -\> $t
+		else	echo -e Moving and renaming'\033[0m' $F -\> $t
+		fi; }
 		}; }
 		done
 	fi
