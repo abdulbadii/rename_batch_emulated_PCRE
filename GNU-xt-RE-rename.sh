@@ -35,18 +35,18 @@ if((N));then
 			[ -e $F ] ||continue;}
 		t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
-		echo -ne '\033[0;36m'Would\ 
-		if [ ${F%/*} = ${t%/*} ];then	echo -n Rename
+		echo -ne '\033[0;36m'Would' '
+		if [ ${F%/*} = ${t%/*} ] ;then	echo -n Rename
 		elif [ ${F##*/} = ${t##*/} ];then	echo -n Move
 		else	echo -n Move then rename
 		fi
-		echo -e ' \033[0m'"$F -> $t\n"
+		echo -e '\033[0m'" $F -> $t\n"
 		}
 	done<$f
 	else	for F in `find $s -regextype posix-extended $c "$x" |head -n499`
 	{	t=`echo $F | sed -E "s!$v!$y!$I"`
 		[ $F = $t ]||{
-		echo -ne '\033[0;36m'Would\ 
+		echo -ne '\033[0;36m'Would' '
 		if [ ${F%/*} = ${t%/*} ];then	echo -n Rename
 		elif [ ${F##*/} = ${t##*/} ];then	echo -n Move
 		else	echo -n Move then rename
